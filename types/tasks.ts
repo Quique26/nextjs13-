@@ -1,4 +1,5 @@
 export interface ITask {
-    id: string,
+    avatar: string
+    id: string
     text: string
 }

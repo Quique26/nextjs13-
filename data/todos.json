@@ -1,12 +1,34 @@
 {
-    "tasks": [
-        {
-            "id": "1",
-            "text": "Buy milk with some orange"
-        },
-        {
-            "id": "2",
-            "text": "Help my friend to find a girl"
-        }
-    ]
+  "tasks": [
+    {
+      "id": "4",
+      "avatar": "avatar1.png",
+      "text": "hola"
+    },
+    {
+      "avatar": "avatar2.png",
+      "id": "5",
+      "text": "learn math"
+    },
+    {
+      "avatar": "avatar3.png",
+      "id": "20c9301b-2386-48ae-9e2b-47e49b2ec17d",
+      "text": "learn programming"
+    },
+    {
+      "avatar": "avatar4.png",
+      "id": "a04a9538-6e5c-4aee-b1aa-a72590d5bfa9",
+      "text": "tt"
+    },
+    {
+      "avatar": "avatar5.png",
+      "id": "bb0db388-cecf-40d4-968b-674c483cfe00",
+      "text": "av"
+    },
+    {
+      "id": "f9971ce4-4057-4ce1-9fc1-f4d991880a84",
+      "avatar": "avatar6.png",
+      "text": "avatar6"
+    }
+  ]
 }
