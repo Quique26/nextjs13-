@@ -12,11 +12,11 @@ const AddTask = () => {
     const [modalOpen, setModalOpen] = useState<boolean>(false)
     const[newTaskValueText, setNewTaskValueText] = useState<string>("")
     const[newTaskValueAvatar, setNewTaskValueAvatar] = useState<string>("")
-    
+    const avatarDefault = "avatardefault.png"
 
     const handleSubmitNewTodo: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault()
-
+       
         const avatarName = newTaskValueAvatar ? newTaskValueAvatar.split('\\').pop() ?? '' : '';
 
         await addTodo({

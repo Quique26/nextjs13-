@@ -1,34 +1,14 @@
 {
   "tasks": [
     {
-      "id": "4",
-      "avatar": "avatar1.png",
-      "text": "hola"
-    },
-    {
-      "avatar": "avatar2.png",
-      "id": "5",
-      "text": "learn math"
-    },
-    {
-      "avatar": "avatar3.png",
-      "id": "20c9301b-2386-48ae-9e2b-47e49b2ec17d",
-      "text": "learn programming"
-    },
-    {
       "avatar": "avatar4.png",
-      "id": "a04a9538-6e5c-4aee-b1aa-a72590d5bfa9",
-      "text": "tt"
+      "id": "383eb185-aed5-4dce-b6ed-1c017401a5d4",
+      "text": "hgfhfh"
     },
     {
-      "avatar": "avatar5.png",
-      "id": "bb0db388-cecf-40d4-968b-674c483cfe00",
-      "text": "av"
-    },
-    {
-      "id": "f9971ce4-4057-4ce1-9fc1-f4d991880a84",
-      "avatar": "avatar6.png",
-      "text": "avatar6"
+      "avatar": "avatar1.png",
+      "id": "70ae8b23-0eab-4dd2-b195-a872a40006ab",
+      "text": "tttttt"
     }
   ]
 }

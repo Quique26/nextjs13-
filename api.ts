@@ -9,13 +9,19 @@ export const getAllTodos = async ():Promise<ITask[]> => {
 }
 
 export const addTodo = async (todo: ITask): Promise<ITask> => {
+    console.log(todo.avatar)
+    if (todo.avatar == ""){
+        todo.avatar = "avatardefault.png"
+    }
     const res = await fetch(`${baseUrl}/tasks`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(todo)
+        
     })
+    console.log(todo)
     const newTodo = await res.json()
     return newTodo
 }
