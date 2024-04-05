@@ -8,23 +8,32 @@ export const getAllTodos = async ():Promise<ITask[]> => {
     return todos;
 }
 
-export const addTodo = async (todo: ITask): Promise<ITask> => {
-    console.log(todo.avatar)
-    if (todo.avatar == ""){
-        todo.avatar = "avatardefault.png"
-    }
-    const res = await fetch(`${baseUrl}/tasks`, {
+export const addTodo = async (todo: ITask, file: File | null): Promise<ITask> => {
+    const fileName = file ? file.name : "avatardefault.png";
+
+    const taskRes = await fetch(`${baseUrl}/tasks`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(todo)
-        
-    })
-    console.log(todo)
-    const newTodo = await res.json()
-    return newTodo
+    });
+
+    const formData = new FormData();
+    if (file) {
+        formData.append("file", file);
+    }
+
+    const uploadRes = await fetch("../api/upload", {
+        method: "POST",
+        body: formData
+    });
+
+
+    const newTodo = await taskRes.json();
+    return newTodo;
 }
+
 
 export const editTodo = async (todo: ITask): Promise<ITask> => {
     const res = await fetch(`${baseUrl}/tasks/${todo.id}`, {

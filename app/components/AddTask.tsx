@@ -11,24 +11,32 @@ const AddTask = () => {
     const router = useRouter()
     const [modalOpen, setModalOpen] = useState<boolean>(false)
     const[newTaskValueText, setNewTaskValueText] = useState<string>("")
-    const[newTaskValueAvatar, setNewTaskValueAvatar] = useState<string>("")
-    const avatarDefault = "avatardefault.png"
+    const[newTaskValueAvatar, setNewTaskValueAvatar] = useState<File | null>(null)
+    const [avatarFileName, setAvatarFileName] = useState<string>("")
 
     const handleSubmitNewTodo: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault()
-       
-        const avatarName = newTaskValueAvatar ? newTaskValueAvatar.split('\\').pop() ?? '' : '';
+
+        const fileName = newTaskValueAvatar ? newTaskValueAvatar.name : "avatardefault.png";
 
         await addTodo({
-            avatar: avatarName,
+            avatar: avatarFileName || fileName,
             id: uuidv4(),
             text: newTaskValueText
-            
-        })
+        }, newTaskValueAvatar);
+        
         setNewTaskValueText("")
-        setNewTaskValueAvatar("")
+        setNewTaskValueAvatar(null)
         setModalOpen(false)
         router.refresh()
+    }
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setNewTaskValueAvatar(file);
+            setAvatarFileName(file.name); 
+        }
     }
 
     return( 
@@ -48,10 +56,10 @@ const AddTask = () => {
                         className="input input-bordered w-full" 
                     />
                     <input 
-                        value={newTaskValueAvatar} 
-                        onChange={(e) => setNewTaskValueAvatar(e.target.value)} 
+                        onChange={handleFileChange}
                         type="file"  
-                        className="input w-full" 
+                        className="input w-full"
+                        multiple
                     />
                     <button type="submit" className="btn">
                         Submit
