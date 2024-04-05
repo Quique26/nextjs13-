@@ -22,8 +22,10 @@ const Task: React.FC<TaskProps> = ({ task }) => {
     const handleSubmitEditTodo: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault()
 
+        const editedTaskAvatar = taskToEditAvatar ? taskToEditAvatar : null;
+
         await editTodo({
-            avatar: avatarFileName,
+            avatar: editedTaskAvatar ? avatarFileName : task.avatar,
             id: task.id,
             text: taskToEditText
             

@@ -27,6 +27,7 @@ const AddTask = () => {
         
         setNewTaskValueText("")
         setNewTaskValueAvatar(null)
+        setAvatarFileName("");
         setModalOpen(false)
         router.refresh()
     }
@@ -35,7 +36,7 @@ const AddTask = () => {
         const file = e.target.files?.[0];
         if (file) {
             setNewTaskValueAvatar(file);
-            setAvatarFileName(file.name); 
+            setAvatarFileName(file.name);
         }
     }
 
@@ -59,7 +60,6 @@ const AddTask = () => {
                         onChange={handleFileChange}
                         type="file"  
                         className="input w-full"
-                        multiple
                     />
                     <button type="submit" className="btn">
                         Submit
