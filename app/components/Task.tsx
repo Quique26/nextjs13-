@@ -16,21 +16,28 @@ const Task: React.FC<TaskProps> = ({ task }) => {
     const [openModalEdit, setOpenModalEdit] = useState<boolean>(false)
     const [openModalDeleted, setOpenModalDeleted] = useState<boolean>(false)
     const [taskToEditText, setTaskToEditText] = useState<string>(task.text)
-    const [taskToEditAvatar, setTaskToEditAvatar] = useState<string>(task.avatar)
+    const [taskToEditAvatar, setTaskToEditAvatar] = useState<File | null>(null)
+    const [avatarFileName, setAvatarFileName] = useState<string>("")
 
     const handleSubmitEditTodo: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault()
 
-        const avatarName =  taskToEditAvatar.split('\\').pop() ?? ""
-
         await editTodo({
-            avatar: avatarName,
+            avatar: avatarFileName,
             id: task.id,
             text: taskToEditText
             
-        })
+        }, taskToEditAvatar)
         setOpenModalEdit(false)
         router.refresh()
+    }
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setTaskToEditAvatar(file);
+            setAvatarFileName(file.name); 
+        }
     }
 
     const handleDeleteTask = async (id: string ) => {
@@ -57,7 +64,7 @@ const Task: React.FC<TaskProps> = ({ task }) => {
                             className="input input-bordered w-full" 
                         />
                         <input 
-                            onChange={(e) => setTaskToEditAvatar(e.target.value)} 
+                            onChange={handleFileChange} 
                             type="file"  
                             className="input w-full" 
                         />

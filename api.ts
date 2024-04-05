@@ -35,15 +35,27 @@ export const addTodo = async (todo: ITask, file: File | null): Promise<ITask> =>
 }
 
 
-export const editTodo = async (todo: ITask): Promise<ITask> => {
-    const res = await fetch(`${baseUrl}/tasks/${todo.id}`, {
+export const editTodo = async (todo: ITask, file: File | null): Promise<ITask> => {
+    const taskRes = await fetch(`${baseUrl}/tasks/${todo.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(todo)
     })
-    const updatedTodo = await res.json()
+
+    const formData = new FormData();
+    if (file) {
+        formData.append("file", file);
+    }
+
+    const uploadRes = await fetch("../api/upload", {
+        method: "POST",
+        body: formData
+    });
+
+
+    const updatedTodo = await taskRes.json()
     return updatedTodo
 }
 

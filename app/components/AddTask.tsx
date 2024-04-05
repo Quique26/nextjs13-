@@ -19,7 +19,7 @@ const AddTask = () => {
 
         const fileName = newTaskValueAvatar ? newTaskValueAvatar.name : "avatardefault.png";
 
-        await addTodo({
+        const newTodo = await addTodo({
             avatar: avatarFileName || fileName,
             id: uuidv4(),
             text: newTaskValueText
